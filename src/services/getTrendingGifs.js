@@ -1,7 +1,5 @@
 
-
 const token = '2Rgff0g9ukj0USISaEW5DKVB6ZkiJdol';
-
 
 export const getTrendingGifs = async () => {
     const response = await fetch(
@@ -9,11 +7,14 @@ export const getTrendingGifs = async () => {
     );
     const { data } = await response.json();
 
-   const gifs = data.map( gif =>( 
-         {
+    console.log(data);
+
+    const gifs = data.map(gif => (
+        {
             id: gif.id,
             title: gif.title,
-            img: gif.images.original.webp
+            img: gif.images.original.webp,
+            url: gif.url
         }
     ));
 
