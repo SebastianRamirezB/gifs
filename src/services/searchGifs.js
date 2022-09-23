@@ -1,7 +1,5 @@
 
-
 const token = '2Rgff0g9ukj0USISaEW5DKVB6ZkiJdol';
-
 
 export const searchGifs = async (query) => {
     const response = await fetch(
@@ -9,8 +7,8 @@ export const searchGifs = async (query) => {
     );
     const { data } = await response.json();
 
-   const gifs = data.map( gif =>( 
-         {
+    const gifs = data.map(gif => (
+        {
             id: gif.id,
             title: gif.title,
             img: gif.images.original.webp

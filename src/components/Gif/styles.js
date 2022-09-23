@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 
-
 export const Article = styled.article`
     width: 20rem;
     border-radius: 1rem;

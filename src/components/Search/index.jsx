@@ -1,31 +1,26 @@
 import { useState } from 'react';
 import { Form, Input } from './styles';
 
-export const Search = () => {
+export const Search = ({ onNewSearch }) => {
+    const [inputSearch, setInputSearch] = useState('');
 
-const [inputSearch, setInputSearch] = useState({
-    typing: false,
-    text: ''
-});
+    const handleChange = (e) => {
+        setInputSearch(e.target.value);
+    };
 
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        onNewSearch(inputSearch.trim());
+        setInputSearch('');
+    };
 
-
-  const handleChange = (e) => {
-    setInputSearch({
-        typing: true,
-        text: e.target.value
-    });
-
-  }
-
-
-
-  return (
-    <Form>
-        <Input 
-            type="text"
-            onChange={handleChange} 
-        />
-    </Form>
-  )
-}
+    return (
+        <Form onSubmit={handleSubmit}>
+            <Input
+                type="text"
+                onChange={handleChange}
+                value={inputSearch}
+            />
+        </Form>
+    );
+};
