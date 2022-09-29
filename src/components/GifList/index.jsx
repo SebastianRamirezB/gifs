@@ -45,14 +45,18 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
             {
                 isLoading
                     ? (<h1> Cargando...</h1>)
-                    : (gifsToShow.map(gif => (
-                        <Gif
-                            key={gif.id}
-                            gif={gif}
-                            onCopy={onCopy}
-                            chooseFavorite={chooseFavorite}
-                        />
-                    )))
+                    : (gifsToShow.map(gif => {
+                        const isFavorite = favoritesGifs.find(g => g.id === gif.id);
+                        return (
+                            <Gif
+                                key={gif.id}
+                                gif={gif}
+                                onCopy={onCopy}
+                                chooseFavorite={chooseFavorite}
+                                isFavorite={isFavorite}
+                            />
+                        );
+                    }))
             }
         </Ul>
     );

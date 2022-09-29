@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { MdKeyboardBackspace } from 'react-icons/md';
+
 import { GifList } from '../../components/GifList';
+import { ButtonBack } from './styles';
 const Favorites = () => {
     const [gifs, setGifs] = useState([]);
     const [isRendering, setIsRendering] = useState(false);
@@ -18,7 +20,10 @@ const Favorites = () => {
 
     return (
         <>
-            <Link to="/">volver</Link>
+            <ButtonBack to="/">
+                <MdKeyboardBackspace />
+                Back
+            </ButtonBack>
 
             {
                 gifs.length !== 0
