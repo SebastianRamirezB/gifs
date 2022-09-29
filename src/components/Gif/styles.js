@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { MdFavoriteBorder, MdContentCopy } from 'react-icons/md';
 
 export const Article = styled.article`
     max-height: 400px;
@@ -44,13 +45,22 @@ export const OverlayGif = styled.div`
     transition: .1s ease-in;
     
 
-    svg{
-        cursor: pointer;
-    }
     ${Article}:hover & {
         opacity: 1;
         background-color: rgba(34, 40, 49, .5);
         transition: .1s ease-in;
     
   }
+`;
+
+export const IconLike = styled(MdFavoriteBorder)`
+    cursor: pointer;
+    font-size: 3rem;
+    color: ${props => props.color};
+`;
+
+export const IconCopy = styled(MdContentCopy)`
+    cursor: pointer;
+    font-size: 2.8rem;
+    
 `;
