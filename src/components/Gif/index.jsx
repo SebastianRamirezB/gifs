@@ -1,18 +1,18 @@
 
-import { Article, Image } from './styles';
+import { MdFavoriteBorder, MdContentCopy } from 'react-icons/md';
 
-export const Gif = ({ gif }) => {
-    const onCopy = async (e) => {
-        await navigator.clipboard.writeText(gif.url)
-            .then(() => console.log('Copiado'))
-            .catch(() => console.log('No se pudo Copiar'));
-    };
+import { Article, Image, OverlayGif } from './styles';
 
+export const Gif = ({ gif, onCopy, chooseFavorite }) => {
     return (
         <>
 
-            <Article onClick={onCopy} >
+            <Article >
                 <Image src={gif.img} alt={gif.title} />
+                <OverlayGif>
+                    <MdFavoriteBorder onClick={() => chooseFavorite(gif.id, gif.title, gif.img, gif.url)} size="3rem" />
+                    <MdContentCopy onClick={() => onCopy(gif.url)} size="2.8rem" value={{ style: { cursor: 'pointer' } }} />
+                </OverlayGif>
             </Article>
 
         </>

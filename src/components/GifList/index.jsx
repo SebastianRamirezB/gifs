@@ -1,16 +1,44 @@
-
+import { useState, useEffect } from 'react';
 import { useFetchGifs } from '../../hooks/useFetchGifs';
 
 import { Gif } from '../Gif';
 
 import { Ul } from './styles';
 
-export const GifList = ({ gifs }) => {
+export const GifList = ({ gifs, toggleRendering = () => {} }) => {
+    const [favoritesGifs, setFavoritesGifs] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
     const { data: gifsTrending, isLoading } = useFetchGifs();
 
-    console.log(gifs);
-
+    console.log(favoritesGifs);
     const gifsToShow = gifs.length === 0 ? gifsTrending : gifs;
+
+    const onCopy = async (url) => {
+        await navigator.clipboard.writeText(url)
+            .then(() => console.log('Copiado'))
+            .catch(() => console.log('No se pudo Copiar'));
+    };
+
+    const chooseFavorite = (
+        id,
+        title,
+        img,
+        url) => {
+        if (favoritesGifs.find(gif => gif.id === id)) {
+            const gifs = favoritesGifs.filter(gif => gif.id !== id);
+            setFavoritesGifs(gifs);
+            toggleRendering();
+            return;
+        }
+        setFavoritesGifs([...favoritesGifs, {
+            id,
+            title,
+            img,
+            url
+        }]);
+    };
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favoritesGifs));
+    }, [favoritesGifs]);
 
     return (
         <Ul>
@@ -18,7 +46,12 @@ export const GifList = ({ gifs }) => {
                 isLoading
                     ? (<h1> Cargando...</h1>)
                     : (gifsToShow.map(gif => (
-                        <Gif key={gif.id} gif={gif} />
+                        <Gif
+                            key={gif.id}
+                            gif={gif}
+                            onCopy={onCopy}
+                            chooseFavorite={chooseFavorite}
+                        />
                     )))
             }
         </Ul>

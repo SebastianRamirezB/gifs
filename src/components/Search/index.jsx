@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Form, Input } from './styles';
+import { ButtonSearch, Form, Input } from './styles';
 
 export const Search = ({ onNewSearch }) => {
     const [inputSearch, setInputSearch] = useState('');
@@ -18,9 +18,11 @@ export const Search = ({ onNewSearch }) => {
         <Form onSubmit={handleSubmit}>
             <Input
                 type="text"
+                placeholder='Search Gifs'
                 onChange={handleChange}
                 value={inputSearch}
             />
+            <ButtonSearch>Search</ButtonSearch>
         </Form>
     );
 };
