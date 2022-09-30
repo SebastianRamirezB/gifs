@@ -5,6 +5,10 @@ export const Container = styled.main`
     flex-direction: column;
     gap: 1rem;
     padding: 2rem;
+
+    @media screen and (max-width: 1024px) {
+        padding: 0;
+  }
     
 `;
 
