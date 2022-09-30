@@ -9,7 +9,6 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
     const [favoritesGifs, setFavoritesGifs] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
     const { data: gifsTrending, isLoading } = useFetchGifs();
 
-    console.log(favoritesGifs);
     const gifsToShow = gifs.length === 0 ? gifsTrending : gifs;
 
     const onCopy = async (url) => {
@@ -41,6 +40,7 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
     }, [favoritesGifs]);
 
     return (
+
         <Ul>
             {
                 isLoading
@@ -59,5 +59,6 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
                     }))
             }
         </Ul>
+
     );
 };

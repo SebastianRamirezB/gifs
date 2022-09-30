@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { searchGifs } from '../services/searchGifs';
 
-export const useSearchGifs = (query) => {
+export const useSearchGifs = ({ query, offset }) => {
     const [state, setstate] = useState({
         data: [],
         isLoading: true
@@ -9,13 +9,13 @@ export const useSearchGifs = (query) => {
 
     useEffect(() => {
         if (!query) return;
-        searchGifs(query).then((gifs) => {
+        searchGifs(query, offset).then((gifs) => {
             setstate({
                 data: gifs,
                 isLoading: false
             });
         });
-    }, [query]);
+    }, [query, offset]);
 
     return state;
 };
