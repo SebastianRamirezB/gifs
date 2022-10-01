@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { MdKeyboardBackspace } from 'react-icons/md';
-
+import { GoArrowLeft } from 'react-icons/go';
 import { GifList } from '../../components/GifList';
 import { ButtonBack } from './styles';
 const Favorites = () => {
@@ -21,7 +20,7 @@ const Favorites = () => {
     return (
         <>
             <ButtonBack to="/">
-                <MdKeyboardBackspace />
+                <GoArrowLeft />
                 Back
             </ButtonBack>
 

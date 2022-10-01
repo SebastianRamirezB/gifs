@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useFetchGifs } from '../../hooks/useFetchGifs';
 
 import { Gif } from '../Gif';
+import { Skeleton } from '../Skeleton';
 
 import { Ul } from './styles';
 
@@ -9,12 +10,10 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
     const [favoritesGifs, setFavoritesGifs] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
     const { data: gifsTrending, isLoading } = useFetchGifs();
 
-    console.log(favoritesGifs);
     const gifsToShow = gifs.length === 0 ? gifsTrending : gifs;
 
     const onCopy = async (url) => {
         await navigator.clipboard.writeText(url)
-            .then(() => console.log('Copiado'))
             .catch(() => console.log('No se pudo Copiar'));
     };
 
@@ -41,10 +40,11 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
     }, [favoritesGifs]);
 
     return (
+
         <Ul>
             {
                 isLoading
-                    ? (<h1> Cargando...</h1>)
+                    ? (<Skeleton />)
                     : (gifsToShow.map(gif => {
                         const isFavorite = favoritesGifs.find(g => g.id === gif.id);
                         return (
@@ -59,5 +59,6 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
                     }))
             }
         </Ul>
+
     );
 };

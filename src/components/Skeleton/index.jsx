@@ -1,7 +1,17 @@
-import { SkeletonCard } from './styles';
+import { SkeletonCard } from '../SkeletonCard';
+import { Container } from './styles';
 
 export const Skeleton = () => {
     return (
-        <SkeletonCard>Skeleton</SkeletonCard>
+        <Container>
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+            <SkeletonCard />
+        </Container>
     );
 };
