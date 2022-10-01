@@ -1,27 +1,63 @@
+import { useState, useEffect } from 'react';
 import { useFetchGifs } from '../../hooks/useFetchGifs';
 
 import { Gif } from '../Gif';
 
 import { Ul } from './styles';
 
+export const GifList = ({ gifs, toggleRendering = () => {} }) => {
+    const [favoritesGifs, setFavoritesGifs] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
+    const { data: gifsTrending, isLoading } = useFetchGifs();
 
-export const GifList = () => {
+    console.log(favoritesGifs);
+    const gifsToShow = gifs.length === 0 ? gifsTrending : gifs;
 
-  const {data: gifsTrending, isLoading} = useFetchGifs();
-  
-    
-  return (
-    <Ul>
-       {
-        isLoading 
-          ? (<h1>Cargando...</h1>)
-          : (gifsTrending.map(gif => (
-              <Gif key={gif.id} gif={gif} />
-            )))
-      } 
-    </Ul>
-  )
-}
+    const onCopy = async (url) => {
+        await navigator.clipboard.writeText(url)
+            .then(() => console.log('Copiado'))
+            .catch(() => console.log('No se pudo Copiar'));
+    };
 
+    const chooseFavorite = (
+        id,
+        title,
+        img,
+        url) => {
+        if (favoritesGifs.find(gif => gif.id === id)) {
+            const gifs = favoritesGifs.filter(gif => gif.id !== id);
+            setFavoritesGifs(gifs);
+            toggleRendering();
+            return;
+        }
+        setFavoritesGifs([...favoritesGifs, {
+            id,
+            title,
+            img,
+            url
+        }]);
+    };
+    useEffect(() => {
+        localStorage.setItem('favorites', JSON.stringify(favoritesGifs));
+    }, [favoritesGifs]);
 
-
+    return (
+        <Ul>
+            {
+                isLoading
+                    ? (<h1> Cargando...</h1>)
+                    : (gifsToShow.map(gif => {
+                        const isFavorite = favoritesGifs.find(g => g.id === gif.id);
+                        return (
+                            <Gif
+                                key={gif.id}
+                                gif={gif}
+                                onCopy={onCopy}
+                                chooseFavorite={chooseFavorite}
+                                isFavorite={isFavorite}
+                            />
+                        );
+                    }))
+            }
+        </Ul>
+    );
+};
