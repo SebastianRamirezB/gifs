@@ -1,20 +1,13 @@
-import { GifList } from './components/GifList';
-import { Search } from './components/Search';
 import GlobalStyle from './globalStyles';
+import { AppRouter } from './router/AppRouter';
 
-
-
-function App() {
-  
-
-  return (
-    <>
-      <GlobalStyle />
-      <Search />
-      <GifList />
-      
-    </>
-  )
+function App () {
+    return (
+        <>
+            <GlobalStyle />
+            <AppRouter />
+        </>
+    );
 }
 
 export default App;

@@ -1,19 +1,33 @@
+import { useState, useEffect } from 'react';
+import { Notification } from '../Notification';
+import { Article, IconCopy, IconLike, Image, OverlayGif } from './styles';
 
-import { Article, Image } from './styles';
+export const Gif = ({ gif, onCopy, chooseFavorite, isFavorite }) => {
+    const [isVisible, setIsVisible] = useState(false);
 
-export const Gif = ({gif}) => {
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsVisible(false);
+        }, 3000);
+        return () => clearTimeout(timer);
+    }, [isVisible]);
 
-  const onCopy = async(e) => {
-    await navigator.clipboard.writeText(gif.url)
-          .then(() => console.log('Copiado'))
-          .catch(() => console.log('No se pudo Copiar'));
-  }
+    return (
+        <>
 
+            <Article >
+                <Image src={gif.img} alt={gif.title} />
+                <OverlayGif>
+                    <IconLike onClick={() => chooseFavorite(gif.id, gif.title, gif.img, gif.url)} color={isFavorite ? '#EC7272' : '#eeeeee'} />
+                    <IconCopy onClick={() => {
+                        onCopy(gif.url);
+                        setIsVisible(true);
+                    }} />
+                </OverlayGif>
+                {isVisible && <Notification />}
+            </Article>
 
-  return (
+        </>
 
-    <Article onClick={onCopy} >
-        <Image src={gif.img} alt={gif.title} />
-    </Article>
-  )
-}
+    );
+};
