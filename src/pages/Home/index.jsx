@@ -36,6 +36,7 @@ const Home = () => {
             offset: searchQuery.offset === 0 ? 0 : searchQuery.offset - 30
         });
     };
+
     return (
         <Container>
             <NavBar>
