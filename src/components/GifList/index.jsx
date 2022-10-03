@@ -12,8 +12,8 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
 
     const gifsToShow = gifs.length === 0 ? gifsTrending : gifs;
 
-    const onCopy = async (url) => {
-        await navigator.clipboard.writeText(url)
+    const onCopy = async (id) => {
+        await navigator.clipboard.writeText(`https://media.giphy.com/media/${id}/giphy.gif`)
             .catch(() => console.log('No se pudo Copiar'));
     };
 

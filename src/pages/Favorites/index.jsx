@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { GoArrowLeft } from 'react-icons/go';
 import { GifList } from '../../components/GifList';
-import { ButtonBack } from './styles';
+import { ButtonBack, Container } from './styles';
 const Favorites = () => {
     const [gifs, setGifs] = useState([]);
     const [isRendering, setIsRendering] = useState(false);
@@ -18,7 +18,7 @@ const Favorites = () => {
     }, [isRendering]);
 
     return (
-        <>
+        <Container>
             <ButtonBack to="/">
                 <GoArrowLeft />
                 Back
@@ -30,7 +30,7 @@ const Favorites = () => {
                     : <h2>You have no favorite gifs</h2>
             }
 
-        </>
+        </Container>
     );
 };
 

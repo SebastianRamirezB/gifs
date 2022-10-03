@@ -7,7 +7,7 @@ export const Container = styled.main`
     padding: 2rem;
 
     @media screen and (max-width: 1024px) {
-        padding: 0;
+        padding:  2rem 1rem;
   }
     
 `;

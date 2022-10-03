@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
+export const Container = styled.div`
+    padding: 2rem .5rem;
+`;
+
 export const ButtonBack = styled(Link)`
     text-decoration: none;
     background-color: #FFD369;
