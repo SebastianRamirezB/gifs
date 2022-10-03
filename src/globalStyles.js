@@ -10,6 +10,9 @@ const GlobalStyle = createGlobalStyle`
         background-color: #222831;
         color: #EEEEEE;
         font-family: 'Roboto Mono', monospace;
+        margin: 0;
+        padding: 0;
+        
         
     }
 
