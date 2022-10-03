@@ -20,7 +20,7 @@ export const Gif = ({ gif, onCopy, chooseFavorite, isFavorite }) => {
                 <OverlayGif>
                     <IconLike onClick={() => chooseFavorite(gif.id, gif.title, gif.img, gif.url)} color={isFavorite ? '#EC7272' : '#eeeeee'} />
                     <IconCopy onClick={() => {
-                        onCopy(gif.url);
+                        onCopy(gif.id);
                         setIsVisible(true);
                     }} />
                 </OverlayGif>
