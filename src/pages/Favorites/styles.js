@@ -16,6 +16,7 @@ export const ButtonBack = styled(Link)`
     width: 150px;
     padding: .5rem 1rem;
     border-radius: .5rem;
+    margin-bottom: 2rem;
 
     box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, 
                 rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, 
