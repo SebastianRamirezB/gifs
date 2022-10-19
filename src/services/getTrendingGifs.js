@@ -1,9 +1,7 @@
 
-const token = '2Rgff0g9ukj0USISaEW5DKVB6ZkiJdol';
-
 export const getTrendingGifs = async () => {
     const response = await fetch(
-        `https://api.giphy.com/v1/gifs/trending?api_key=${token}&limit=30`
+        `https://api.giphy.com/v1/gifs/trending?api_key=${import.meta.env.VITE_TOKEN_API}&limit=30`
     );
     const { data } = await response.json();
 
