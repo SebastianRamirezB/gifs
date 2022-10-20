@@ -8,13 +8,13 @@ import { Ul } from './styles';
 
 export const GifList = ({ gifs, toggleRendering = () => {} }) => {
     const [favoritesGifs, setFavoritesGifs] = useState(JSON.parse(localStorage.getItem('favorites')) || []);
+
     const { data: gifsTrending, isLoading } = useFetchGifs();
 
     const gifsToShow = gifs.length === 0 ? gifsTrending : gifs;
 
     const onCopy = async (id) => {
-        await navigator.clipboard.writeText(`https://media.giphy.com/media/${id}/giphy.gif`)
-            .catch(() => console.log('No se pudo Copiar'));
+        await navigator.clipboard.writeText(`https://media.giphy.com/media/${id}/giphy.gif`);
     };
 
     const chooseFavorite = (
@@ -28,6 +28,7 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
             toggleRendering();
             return;
         }
+
         setFavoritesGifs([...favoritesGifs, {
             id,
             title,
@@ -35,6 +36,7 @@ export const GifList = ({ gifs, toggleRendering = () => {} }) => {
             url
         }]);
     };
+
     useEffect(() => {
         localStorage.setItem('favorites', JSON.stringify(favoritesGifs));
     }, [favoritesGifs]);
