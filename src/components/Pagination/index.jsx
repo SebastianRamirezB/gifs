@@ -2,7 +2,6 @@ import { GoArrowLeft, GoArrowRight } from 'react-icons/go';
 import { ButtonNext, ButtonPrevious, Buttons } from './styles';
 
 export const Pagination = ({ onNextPage, onPreviousPage, dataSearch }) => {
-    console.log(dataSearch);
     return (
         <Buttons>
             {
