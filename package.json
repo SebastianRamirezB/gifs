@@ -7,7 +7,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "start": "yarn run start"
+        "start": "yarn run"
     },
     "dependencies": {
         "react": "^18.2.0",
